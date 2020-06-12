@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://kit.fontawesome.com/226a093bbb.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="styles.css">
+		<title>CSS Grid</title>
+	</head>
+	<body>
+		<div class="main-container">
+			<div class="sidebar">
+				<h2 class="sidebar-title">WeSuck Vacuums</h3>
+				<div class="sidebar-main">
+					<a class="sidebar-item">Home</a>
+					<hr>
+					<a class="sidebar-item">About</a>
+					<hr>
+					<div class="sidebar-item sidebar-dropdown">
+						<div class="sidebar-dropdown-title">
+							<b>Other Products</b>
+							<span class="space-filler"></span>
+							<i class="fas fa-caret-left"></i>
+						</div>
+						<div class="sidebar-dropdown-menu hidden">
+							<a class="sidebar-dropdown-menu-item">Shrinkray</a>
+							<a class="sidebar-dropdown-menu-item">Waffle Machine</a>
+							<a class="sidebar-dropdown-menu-item">Blobulator</a>
+							<a class="sidebar-dropdown-menu-item">Inventinator</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="main">
+				<h1>Our Vacuums Suck!</h1>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste adipisci natus, neque libero optio voluptates voluptatibus, soluta voluptatem necessitatibus consequuntur impedit omnis ad magni voluptate. Asperiores eaque sunt consequatur beatae.</p>
+				<div class="paragraphs-4by3">
+					<div class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, eos officia accusantium perferendis exercitationem facilis consequuntur ullam qui quas autem eaque dicta ipsam nemo rem aliquid ipsum, earum in laboriosam?
+					<br>
+					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus nemo voluptatem enim rerum quia, ex corrupti esse, temporibus aspernatur at, debitis iusto deserunt aliquid quos! Repellendus amet quam enim aut.
+					</div>
+					<div class="paragraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora praesentium exercitationem nihil quos asperiores laboriosam cum quia dolorum obcaecati, nisi minima amet doloribus ad minus in! Sit dolorum magni eum?</div>
+					<div class="paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab rem expedita numquam quis est! Odit, at? Vero molestias, nobis quod veritatis dolorem consectetur sequi mollitia incidunt explicabo eius vitae eveniet!</div>
+					<div class="paragraph">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque quam eveniet, voluptatem hic et quidem maiores voluptatum distinctio impedit saepe id nostrum ad possimus eligendi suscipit consequatur architecto harum mollitia.</div>
+					<div class="paragraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius voluptates voluptatem, maxime soluta eaque quia vitae culpa sapiente commodi mollitia alias est saepe nam dicta beatae officia reprehenderit praesentium exercitationem!
+					<br>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur soluta nesciunt perspiciatis, unde architecto culpa temporibus earum voluptates laudantium molestias a. Eos porro ab mollitia impedit soluta numquam quidem molestias?
+					</div>
+					<div class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident in maiores ex dolorum dolor exercitationem perferendis perspiciatis, incidunt fugiat eum assumenda inventore nostrum consequatur iure. Reiciendis esse maxime voluptatibus natus!
+					</div>
+					<div class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore placeat nobis aut accusantium nisi reiciendis distinctio, obcaecati eius similique vel voluptatum vero eos iste deleniti omnis soluta. Nam, maiores odit.</div>
+					<div class="paragraph">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis, quos. Vel, facilis. Praesentium harum quaerat ipsa, repellendus, nihil qui quia, sequi labore voluptatum tempora veritatis dolore consectetur laborum facilis quidem.</div>
+					<div class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam maxime odit saepe culpa, at hic quidem temporibus quae. Esse ullam blanditiis cumque repudiandae delectus neque soluta numquam sint nulla veritatis?
+					<br>
+					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium asperiores, iusto adipisci ipsam a quam fuga sequi commodi earum voluptate necessitatibus aspernatur ipsa molestias minus dicta animi delectus nulla explicabo.
+					</div>
+				</div>
+			</div>
+			<div class="footer">
+				<i class="fas fa-info-circle footer-icon"></i>
+				<p class="footer-text"></p>
+				<i class="fas fa-times close-footer"></i>
+			</div>
+		</div>
+
+		<script>
+			window.onload = async () => {
+				let num = new URLSearchParams(location.search).get('number');
+				if(isNaN(parseInt(num))) {
+					num = 'random';
+				} else {
+					num = num;
+				}
+				document.querySelector('.footer-text').innerHTML = await fetch(`http://numbersapi.com/${num}`)
+				.then((response) => {
+					return response.text();
+				}).then((fact) => {
+					console.log(fact);
+					return fact;
+				});
+
+				document.querySelector('.sidebar-dropdown-title').addEventListener('click', () => {
+					document.querySelector('.sidebar-dropdown-menu').classList.toggle('hidden');
+					document.querySelector('.sidebar-dropdown-title>.fas').classList.toggle('fa-caret-left');
+					document.querySelector('.sidebar-dropdown-title>.fas').classList.toggle('fa-caret-down');
+				});
+				document.querySelector('.close-footer').addEventListener('click', () => {
+					document.querySelector('.footer').classList.toggle('hidden');
+					document.querySelector('.sidebar').style.gridRow = "1/3";
+					document.querySelector('.main').style.gridRow = "1/3";
+				});
+			};
+
+			
+		</script>
+	</body>
+</html>
